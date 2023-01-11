@@ -39,7 +39,7 @@ impl User {
         self.sender.send(job).unwrap();
     }
 
-    pub fn setName(&mut self, new_name: String) {
+    pub fn set_name(&mut self, new_name: String) {
         self.name = new_name;
     }
 

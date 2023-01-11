@@ -4,13 +4,13 @@ use std::{
     net::{TcpListener, TcpStream},
     thread,
     time::Duration,
-}
+};
 use cymothoida_server::User;
 
 fn main() {
     println!("Starting new Cymothoida server...");
 
-    let ip = 127.0.0.1:7878;
+    let ip = "127.0.0.1:7878";
     let max_users = 8;
 
     let listener = TcpListener::bind(ip).unwrap();
@@ -20,12 +20,12 @@ fn main() {
         let stream = stream.unwrap();
 
         users.execute(|| {
-            handleConnection(stream);
+            handle_connection(stream);
         });
     }
 }
 
-fn handleConnection(mut stream: TcpStream) {
+fn handle_connection(mut stream: TcpStream) {
     let buf_reader = BufReader::new(&mut stream);
     let request_line = buf_reader.lines().next().unwrap().unwrap();
 
@@ -34,10 +34,10 @@ fn handleConnection(mut stream: TcpStream) {
 }
 
 //Send messages to connected clients
-fn sendMsg(message: String) {
+fn send_msg(message: String) {
 
 }
 
-fn processCommand(message: String) {
+fn process_command(message: String) {
 
 }
