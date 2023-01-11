@@ -1,7 +1,7 @@
 use std::{sync::{mpsc, Arc, Mutex}, thread};
 
-pub struct User{
-    name: String
+pub struct User {
+    name: String,
     workers: Vec<Worker>,
     sender: mpsc::Sender<Job>,
 }
@@ -26,7 +26,9 @@ impl User {
             workers.push(Worker::new(id, Arc::clone(&receiver)));
         }
 
-        User { "Name", workers, sender }
+        let name = "New User";
+
+        User { name: name.to_string() , workers, sender }
     }
 
     pub fn execute<F>(&self, f: F)
@@ -35,6 +37,14 @@ impl User {
     {
         let job = Box::new(f);
         self.sender.send(job).unwrap();
+    }
+
+    pub fn setName(&mut self, new_name: String) {
+        self.name = new_name;
+    }
+
+    pub fn disconnect() {
+
     }
 }
 
